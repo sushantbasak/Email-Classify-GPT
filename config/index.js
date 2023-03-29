@@ -5,6 +5,7 @@ const config = {
     apiKey: {
       chatGPT: process.env.OPENAI_API_KEY,
     },
+    mongoDb: process.env.DB_URL,
   },
 };
 
