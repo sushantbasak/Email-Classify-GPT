@@ -1,4 +1,4 @@
-const gmailAPIService = require("./services/gmailApi");
+const gmailAPIService = require("../provider/gmailApi");
 
 const getEmailLabels = async () => {
   const auth = await gmailAPIService.authorize();
@@ -20,4 +20,8 @@ const getEmailSubjectById = async () => {
   return val.data.snippet;
 };
 
-getEmailSubjectById();
+module.exports = {
+  getEmailLabels,
+  getEmailSubjectById,
+  getListofEmails,
+};
