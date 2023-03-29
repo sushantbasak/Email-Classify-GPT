@@ -5,7 +5,7 @@ const configuration = new Configuration({
   apiKey: appSettings.apiKey.chatGPT,
 });
 
-const { emailClassifyPrompt } = require("../constants/chatGptQuery");
+const { emailClassifyPrompt } = require("../utils/chatGptQuery");
 
 const openai = new OpenAIApi(configuration);
 
