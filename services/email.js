@@ -16,7 +16,6 @@ const getEmailSubjectById = async () => {
   const auth = await emailAPIProvider.authorize();
 
   const val = await emailAPIProvider.getEmailSubject(auth);
-  console.log(val.data.snippet);
   return val.data.snippet;
 };
 
