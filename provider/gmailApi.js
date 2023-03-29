@@ -105,11 +105,11 @@ async function getMessageIdList(auth, maxResults = 1) {
   // console.log(res);
 }
 
-async function getEmailSubject(auth) {
+async function getEmailSubject(auth, id) {
   const gmail = google.gmail({ version: "v1", auth });
   const res = await gmail.users.messages.get({
     userId: "me",
-    id: "1872b0ec2715eb85",
+    id,
     format: "RAW",
   });
 

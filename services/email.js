@@ -12,10 +12,10 @@ const getListofEmails = async () => {
   const val = await emailAPIProvider.getMessageIdList(auth, 10);
 };
 
-const getEmailSubjectById = async () => {
+const getEmailSubjectById = async (id) => {
   const auth = await emailAPIProvider.authorize();
 
-  const val = await emailAPIProvider.getEmailSubject(auth);
+  const val = await emailAPIProvider.getEmailSubject(auth, id);
   return val.data.snippet;
 };
 

@@ -7,7 +7,7 @@ const QUERY = require("./db/queries");
 
 const { dbConnect } = require("./utils/dbConnect");
 
-const emailClassify = async (id = "1872b0ec2715eb85") => {
+const emailClassify = async (id) => {
   await dbConnect();
   const text = await getEmailSubjectById(id);
   const classify = await emailClassification(text);
@@ -19,10 +19,9 @@ const emailClassify = async (id = "1872b0ec2715eb85") => {
       id,
       result: classify.result,
     });
-    // console.log(classify);
   }
 
-  console.log(data);
+  return data;
 };
 
-emailClassify();
+emailClassify("1872b0ec2715eb85");
