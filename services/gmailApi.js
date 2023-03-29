@@ -86,12 +86,27 @@ async function listLabels(auth) {
   });
 }
 
-function Hello() {
-  console.log("Hello");
+async function getMessageIdList(auth, maxResults = 1) {
+  const gmail = google.gmail({ version: "v1", auth });
+  const res = await gmail.users.messages.list({
+    userId: "me",
+    maxResults,
+  });
+  const messages = res.data.messages;
+  if (!messages || messages.length === 0) {
+    console.log("No messages found.");
+    return;
+  }
+  console.log("messages:");
+  messages.forEach((label) => {
+    console.log(label);
+  });
+
+  // console.log(res);
 }
 
 module.exports = {
   authorize,
   listLabels,
-  Hello,
+  getMessageIdList,
 };

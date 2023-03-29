@@ -1,10 +1,13 @@
 const gmailAPIService = require("./services/gmailApi");
 
-const executeLogin = () => {
-  gmailAPIService
-    .authorize()
-    .then(gmailAPIService.listLabels)
-    .catch(console.error);
+const getEmailLabels = async () => {
+  const auth = await gmailAPIService.authorize();
+
+  const val = await getEmailLabels.listLabels(auth);
 };
 
-executeLogin();
+const getListofEmails = async () => {
+  const auth = await gmailAPIService.authorize();
+
+  const val = await gmailAPIService.getMessageIdList(auth, 10);
+};
