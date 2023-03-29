@@ -3,20 +3,26 @@ const dotenv = require("dotenv");
 const { getEmailSubjectById } = require("./services/email");
 const { emailClassification } = require("./provider/chatGptApi");
 
+const QUERY = require("./db/queries");
+
 const { dbConnect } = require("./utils/dbConnect");
 
-// const emailClassify = async () => {
-//   // await dbConnect();
-//   const text = await getEmailSubjectById();
-//   const classify = await emailClassification(text);
-
-//   console.log(classify);
-// };
-
-// emailClassify();
-
-async function func() {
+const emailClassify = async (id = "1872b0ec2715eb85") => {
   await dbConnect();
-}
+  const text = await getEmailSubjectById(id);
+  const classify = await emailClassification(text);
 
-func();
+  let data = await QUERY.Email.findEmail({ id });
+
+  if (data.hasError === 2) {
+    data = await QUERY.Email.createEmail({
+      id,
+      result: classify.result,
+    });
+    // console.log(classify);
+  }
+
+  console.log(data);
+};
+
+emailClassify();
