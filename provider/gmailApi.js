@@ -9,8 +9,8 @@ const SCOPES = ["https://www.googleapis.com/auth/gmail.readonly"];
 // The file token.json stores the user's access and refresh tokens, and is
 // created automatically when the authorization flow completes for the first
 // time.
-const TOKEN_PATH = path.join(process.cwd(), "gmailtoken.json");
-const CREDENTIALS_PATH = path.join(process.cwd(), "gmailcredentials.json");
+const TOKEN_PATH = path.join(process.cwd(), "./gmailtoken.json");
+const CREDENTIALS_PATH = path.join(process.cwd(), "./gmailcredentials.json");
 
 /**
  * Reads previously authorized credentials from the save file.
@@ -52,6 +52,7 @@ async function saveCredentials(client) {
  */
 async function authorize() {
   let client = await loadSavedCredentialsIfExist();
+  // console.log(client);
   if (client) {
     return client;
   }
@@ -97,10 +98,13 @@ async function getMessageIdList(auth, maxResults = 1) {
     console.log("No messages found.");
     return;
   }
-  console.log("messages:");
+  // console.log("messages:");
+  let msg = [];
   messages.forEach((label) => {
-    console.log(label);
+    msg.push(label.id);
   });
+
+  return msg;
 
   // console.log(res);
 }
